@@ -1,0 +1,64 @@
+using System.Diagnostics;
+using UnityEditor.Animations;
+using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+    //Singleton pattern to make sure there is only one instance of the SoundManager in the scene;
+    // get; private set; allows other scripts to access the instance but not modify it;
+    public static SoundManager instance {get; private set;}
+    private AudioSource soundSource;
+    private AudioSource musicSource;
+    private void Awake()
+    {
+        soundSource = GetComponent<AudioSource>();
+        //Assumes music audio source is first child of the SoundManager, so gets the audio source component of the first child
+        musicSource = transform.GetChild(0).GetComponent<AudioSource>();
+
+        //Keep this object even when we go to a new scene
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        //Destroy duplicate gameobjects
+        else if (instance != null)
+            Destroy(gameObject);
+
+        //Assign initial volumes (load player prefs)
+        ChangeMusicVolume(0);
+        ChangeSoundVolume(0);
+    }
+
+    public void PlaySound(AudioClip _sound)
+    {
+        soundSource.PlayOneShot(_sound);
+    }
+
+    public void ChangeSoundVolume(float _change)
+    {
+        ChangeSourceVolume(1f, "soundVolume", _change, soundSource);
+    }
+
+    public void ChangeMusicVolume(float _change)
+    {
+        ChangeSourceVolume(0.3f, "musicVolume", _change, musicSource);
+    }
+    private void ChangeSourceVolume(float baseVolume, string volumeName, float change, AudioSource source)
+    {
+        float currentVolume = PlayerPrefs.GetFloat(volumeName, 1);
+        currentVolume += change;
+        
+        if (currentVolume > 1)
+            currentVolume = 0;
+        else if (currentVolume < 0)
+            currentVolume = 1;
+        //Assign final value
+        float finalVolume = baseVolume * currentVolume;
+        source.volume = finalVolume;
+
+        //save currentVolume value (0-1) to player prefs
+        PlayerPrefs.SetFloat(volumeName, currentVolume);
+    }
+}
+

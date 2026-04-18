@@ -1,0 +1,131 @@
+# =========================================================
+# Unity project .gitattributes
+# No Git LFS rules included
+# Keeps text files normalized and binary files treated safely
+# =========================================================
+
+# Default behavior
+* text=auto
+
+# -------------------------
+# Unity / code / config text files
+# Store with LF in the repo and check out consistently
+# -------------------------
+*.cs          text eol=lf
+*.shader      text eol=lf
+*.compute     text eol=lf
+*.cginc       text eol=lf
+*.hlsl        text eol=lf
+*.glsl        text eol=lf
+
+*.unity       text eol=lf
+*.prefab      text eol=lf
+*.mat         text eol=lf
+*.anim        text eol=lf
+*.meta        text eol=lf
+*.asset       text eol=lf
+*.physicMaterial text eol=lf
+*.physicsMaterial2D text eol=lf
+*.controller  text eol=lf
+*.overrideController text eol=lf
+*.playable    text eol=lf
+*.mask        text eol=lf
+*.brush       text eol=lf
+*.terrainlayer text eol=lf
+
+*.asmdef      text eol=lf
+*.asmref      text eol=lf
+*.rsp         text eol=lf
+*.json        text eol=lf
+*.xml         text eol=lf
+*.yaml        text eol=lf
+*.yml         text eol=lf
+*.txt         text eol=lf
+*.md          text eol=lf
+*.csv         text eol=lf
+*.html        text eol=lf
+*.htm         text eol=lf
+*.css         text eol=lf
+*.js          text eol=lf
+*.ts          text eol=lf
+*.java        text eol=lf
+*.kt          text eol=lf
+*.gradle      text eol=lf
+*.properties  text eol=lf
+*.bat         text eol=crlf
+*.cmd         text eol=crlf
+*.ps1         text eol=crlf
+*.sh          text eol=lf
+
+# Solution / project files
+*.sln         text eol=crlf
+*.slnx        text eol=crlf
+*.csproj      text eol=crlf
+*.unityproj   text eol=crlf
+*.props       text eol=crlf
+*.targets     text eol=crlf
+
+# -------------------------
+# Common binary assets
+# Prevent Git from treating them as text
+# -------------------------
+*.png         binary
+*.jpg         binary
+*.jpeg        binary
+*.gif         binary
+*.bmp         binary
+*.tga         binary
+*.psd         binary
+*.psb         binary
+*.exr         binary
+*.hdr         binary
+*.tif         binary
+*.tiff        binary
+*.ico         binary
+
+*.wav         binary
+*.mp3         binary
+*.ogg         binary
+*.aiff        binary
+*.flac        binary
+
+*.mp4         binary
+*.mov         binary
+*.avi         binary
+*.webm        binary
+
+*.fbx         binary
+*.blend       binary
+*.blend1      binary
+*.obj         binary
+*.dae         binary
+*.3ds         binary
+*.max         binary
+
+*.ttf         binary
+*.otf         binary
+*.woff        binary
+*.woff2       binary
+
+*.pdf         binary
+*.zip         binary
+*.7z          binary
+*.rar         binary
+*.gz          binary
+
+*.dll         binary
+*.exe         binary
+*.so          binary
+*.dylib       binary
+*.a           binary
+*.lib         binary
+*.pdb         binary
+
+*.apk         binary
+*.aab         binary
+*.unitypackage binary
+
+# -------------------------
+# Optional merge hint for Unity YAML files
+# Keep as text so diffs still work
+# -------------------------
