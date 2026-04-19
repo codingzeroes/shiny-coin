@@ -8,14 +8,14 @@ public class PlayerProjectile: MonoBehaviour
     private Vector2 moveDir;
     private bool hit;
 
-    private BoxCollider2D boxCollider;
+    private BoxCollider2D col;
     private Rigidbody2D rb;
     private Animator anim;
     private Vector2 pushSum;
 
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        col = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         pushSum = Vector2.zero;
@@ -36,7 +36,7 @@ public class PlayerProjectile: MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         hit = true;
-        boxCollider.enabled = false;
+        col.enabled = false;
         MakeKinematic();
 
         // TODO: Animation, damage, collision effects
@@ -47,13 +47,13 @@ public class PlayerProjectile: MonoBehaviour
     }
     public void SetDirection(Vector2 _direction, Vector2 _playerVelocity)
     {
-        if (boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
+        if (col == null) col = GetComponent<BoxCollider2D>();
         lifetime = 0;
         hit = false;
+        col.enabled = true;
         moveDir = _direction.normalized;
 
         
-        boxCollider.enabled = true;
         gameObject.SetActive(true);
 
         rb.linearVelocity = moveDir * speed + _playerVelocity;

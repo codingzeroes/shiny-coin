@@ -57,7 +57,7 @@ public class PlayerThrow : MonoBehaviour
         Vector2 aim = GameInput.Instance.Move;
         if (aim.sqrMagnitude < 0.001f)
             aim = new Vector2(Mathf.Sign(transform.localScale.x), 0f);
-
+        
         nextProjectile.GetComponent<PlayerProjectile>().SetDirection(aim, playerMovement.GetCurrentVelocity());
     }
     private PlayerProjectile FindProjectile()
